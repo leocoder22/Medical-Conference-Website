@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+Flask-Mail
+python-dotenv
+Werkzeug
+gunicorn
+openpyxl

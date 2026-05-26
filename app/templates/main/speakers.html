@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}Speakers | Medical Conference{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="relative overflow-hidden rounded-3xl soft-card px-6 py-12 md:px-10 md:py-14 fade-in-up mb-10">
+    <div class="absolute -top-10 -right-10 w-52 h-52 bg-blue-100 rounded-full blur-3xl opacity-60"></div>
+    <div class="absolute -bottom-12 -left-10 w-56 h-56 bg-cyan-100 rounded-full blur-3xl opacity-60"></div>
+
+    <div class="relative text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+            Meet Our <span class="gradient-text">Speakers</span>
+        </h1>
+        <p class="text-slate-600 text-lg">
+            Distinguished academicians, clinicians, and researchers contributing to scientific dialogue and academic
+            excellence.
+        </p>
+    </div>
+</section>
+
+<!-- Admin Add Speaker Button -->
+{% if current_user.is_authenticated and current_user.email == config.ADMIN_EMAIL %}
+<section class="mb-8 fade-in-up">
+    <div class="flex justify-end">
+        <form method="POST" action="{{ url_for('admin.create_inline_speaker') }}">
+            <button type="submit" class="primary-btn">+ Add Speaker</button>
+        </form>
+    </div>
+</section>
+{% endif %}
+
+<!-- Speaker Grid -->
+<section class="mb-12 fade-in-up">
+    <div class="text-center mb-8">
+        <h2 class="section-title">Speakers</h2>
+        <p class="section-subtitle mt-2">
+            Faculty, guest speakers, and subject experts participating in the conference.
+        </p>
+    </div>
+
+    {% if speakers %}
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for speaker in speakers %}
+        <div
+            class="group relative rounded-2xl p-[1px] bg-gradient-to-br from-blue-100 via-cyan-100 to-transparent hover:from-blue-200 hover:via-cyan-200 transition duration-300">
+            <div
+                class="bg-white rounded-2xl p-6 h-full flex flex-col justify-between shadow-sm group-hover:shadow-md transition">
+
+                {% if current_user.is_authenticated and current_user.email == config.ADMIN_EMAIL %}
+                <form method="POST" action="{{ url_for('admin.update_inline_speaker', speaker_id=speaker.id) }}"
+                    class="space-y-4">
+
+                    <input type="text" name="name" value="{{ speaker.name }}"
+                        class="w-full text-lg font-bold text-slate-800 border-b border-transparent focus:border-blue-400 focus:outline-none bg-transparent"
+                        placeholder="Speaker Name">
+
+                    <input type="text" name="designation"
+                        value="{{ speaker.specialization if speaker.specialization else '' }}" placeholder="Designation"
+                        class="w-full text-sm text-blue-700 font-medium border-b border-transparent focus:border-blue-400 focus:outline-none bg-transparent">
+
+                    <input type="text" name="institution"
+                        value="{{ speaker.institution if speaker.institution else '' }}" placeholder="Institution"
+                        class="w-full text-sm text-slate-500 border-b border-transparent focus:border-blue-400 focus:outline-none bg-transparent">
+
+                    <textarea name="bio" rows="4" placeholder="Short bio"
+                        class="w-full text-sm text-slate-600 border rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">{{ speaker.bio if speaker.bio else '' }}</textarea>
+
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <button type="submit" class="primary-btn text-sm px-4 py-2">Save</button>
+                </form>
+
+                <form method="POST" action="{{ url_for('admin.delete_inline_speaker', speaker_id=speaker.id) }}"
+                    onsubmit="return confirm('Delete this speaker?');">
+                    <button type="submit"
+                        class="px-3 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 text-sm transition">
+                        Delete
+                    </button>
+                </form>
+            </div>
+
+            {% else %}
+            <div class="space-y-3">
+                <div class="space-y-1">
+                    <h3 class="text-lg font-semibold text-slate-800">
+                        {{ speaker.name }}
+                    </h3>
+                </div>
+
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    {{ speaker.bio if speaker.bio else 'Speaker details will be updated soon.' }}
+                </p>
+
+                <div class="pt-2 border-t border-slate-100 space-y-1">
+                    <p class="text-sm text-blue-700 font-medium">
+                        {{ speaker.specialization if speaker.specialization else 'Designation not specified' }}
+                    </p>
+
+                    <p class="text-xs text-slate-400">
+                        {{ speaker.institution if speaker.institution else 'Institution not specified' }}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <div class="soft-card rounded-3xl p-10 text-center">
+        <h3 class="text-xl font-bold text-slate-800 mb-2">No speakers added yet</h3>
+        <p class="text-slate-600">
+            Speaker profiles will appear here once added by admin.
+        </p>
+    </div>
+    {% endif %}
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,411 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | MAHATROPACON 2026{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="relative overflow-hidden rounded-3xl soft-card px-6 py-16 md:px-12 md:py-20 fade-in-up">
+
+    <!-- Medical ambient background -->
+    <div class="med-bg">
+
+        <div class="med-shape med-pill top-10 left-6 float-delay-1">
+            <svg viewBox="0 0 100 100" fill="none">
+                <g transform="rotate(-25 50 50)">
+                    <rect x="18" y="34" width="64" height="32" rx="16" fill="#2563eb" />
+                    <path d="M50 34H66C74.837 34 82 41.163 82 50C82 58.837 74.837 66 66 66H50V34Z" fill="#06b6d4" />
+                    <line x1="50" y1="34" x2="50" y2="66" stroke="white" stroke-width="3" opacity="0.7" />
+                </g>
+            </svg>
+        </div>
+
+        <div class="med-shape med-syringe top-16 right-10 float-delay-2 drift-side">
+            <svg viewBox="0 0 120 120" fill="none">
+                <g transform="rotate(25 60 60)">
+                    <rect x="26" y="52" width="42" height="16" rx="4" fill="#0ea5e9" />
+                    <rect x="68" y="56" width="20" height="8" rx="2" fill="#2563eb" />
+                    <rect x="18" y="56" width="8" height="8" rx="2" fill="#38bdf8" />
+                    <line x1="88" y1="60" x2="106" y2="60" stroke="#2563eb" stroke-width="3" />
+                    <line x1="106" y1="60" x2="112" y2="54" stroke="#2563eb" stroke-width="2" />
+                    <line x1="106" y1="60" x2="112" y2="66" stroke="#2563eb" stroke-width="2" />
+                </g>
+            </svg>
+        </div>
+
+        <div class="med-shape med-cross bottom-14 left-12 float-delay-3">
+            <svg viewBox="0 0 100 100" fill="none">
+                <rect x="40" y="18" width="20" height="64" rx="6" fill="#14b8a6" />
+                <rect x="18" y="40" width="64" height="20" rx="6" fill="#14b8a6" />
+            </svg>
+        </div>
+
+        <div class="med-shape med-molecule bottom-10 right-20 float-delay-4 drift-side">
+            <svg viewBox="0 0 100 100" fill="none">
+                <circle cx="22" cy="50" r="8" fill="#2563eb" />
+                <circle cx="50" cy="26" r="8" fill="#06b6d4" />
+                <circle cx="76" cy="50" r="8" fill="#14b8a6" />
+                <circle cx="50" cy="74" r="8" fill="#38bdf8" />
+                <line x1="28" y1="50" x2="42" y2="30" stroke="#94a3b8" stroke-width="3" />
+                <line x1="58" y1="30" x2="70" y2="50" stroke="#94a3b8" stroke-width="3" />
+                <line x1="70" y1="50" x2="58" y2="70" stroke="#94a3b8" stroke-width="3" />
+                <line x1="42" y1="70" x2="30" y2="50" stroke="#94a3b8" stroke-width="3" />
+            </svg>
+        </div>
+
+        <div class="med-shape med-tube top-1/2 left-[42%] float-delay-5">
+            <svg viewBox="0 0 100 100" fill="none">
+                <g transform="rotate(18 50 50)">
+                    <rect x="38" y="18" width="24" height="50" rx="10" fill="#e0f2fe" stroke="#0ea5e9"
+                        stroke-width="3" />
+                    <path d="M40 52H60V66C60 71.523 55.523 76 50 76C44.477 76 40 71.523 40 66V52Z" fill="#38bdf8" />
+                </g>
+            </svg>
+        </div>
+
+        <div class="absolute -top-16 -right-16 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-60"></div>
+        <div class="absolute -bottom-20 -left-16 w-72 h-72 bg-cyan-100 rounded-full blur-3xl opacity-60"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto text-center">
+
+    <!-- Badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-6">
+        7th – 8th August 2026
+    </div>
+
+    <!-- Main Heading -->
+    <h2 class="text-xl md:text-2xl font-semibold text-slate-600 mb-3 tracking-wide">
+        3rd IATP Maharashtra State Chapter Conference
+    </h2>
+
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+        <span class="gradient-text">MAHATROPACON 2026</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="text-lg md:text-xl text-slate-700 font-medium mb-8">
+        <span class="text-slate-500">Theme :</span>
+        Breaking Silos - Innovative Solutions for Parasitic Diseases
+    </p>
+
+    <!-- Description -->
+    <!-- <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto mb-10">
+        Register for the conference, receive your portal credentials by email, and submit your abstract through a streamlined scientific platform.
+    </p> -->
+
+    <!-- Buttons -->
+    <div class="flex flex-wrap justify-center gap-4">
+        {% if current_user.is_authenticated %}
+            {% if current_user.email == config.ADMIN_EMAIL %}
+                <a href="{{ url_for('admin.dashboard') }}" class="primary-btn">
+                    Go to Admin Dashboard
+                </a>
+            {% else %}
+                <a href="{{ url_for('user.abstract_portal') }}" class="primary-btn">
+                    Go to Abstract Portal
+                </a>
+            {% endif %}
+        {% else %}
+            <a href="{{ url_for('auth.conference_registration') }}" class="primary-btn">
+                Conference Registration
+            </a>
+            <a href="{{ url_for('auth.login') }}" class="secondary-btn">
+                Login to Portal
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- Footer Info -->
+    <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-slate-500">
+        <div>Conference Registration</div>
+        <div>Payment Verification</div>
+        <div>Abstract Submission</div>
+    </div>
+
+</div>
+</section>
+
+<!-- Feature Section -->
+<section class="py-16 fade-in-up">
+    <div class="text-center mb-10">
+        <h2 class="section-title">Organizing Team
+        </h2>
+        <p class="section-subtitle mt-2">
+            Department of Microbiology
+            DMMC & JNMC
+        </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="soft-card rounded-2xl p-6 card-hover">
+            <div class="text-blue-600 text-3xl mb-4"></div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Dr. Gargi Mudey</h3>
+            <p class="text-sm text-slate-600">
+                Prof & Head, Dept of Microbiology,
+                JNMC
+
+            </p>
+        </div>
+
+        <div class="soft-card rounded-2xl p-6 card-hover">
+            <div class="text-cyan-600 text-3xl mb-4"></div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Dr. Nandkishor Bankar</h3>
+            <p class="text-sm text-slate-600">
+                Prof & Head, Dept of Microbiology,
+                DMMC
+
+            </p>
+        </div>
+
+        <div class="soft-card rounded-2xl p-6 card-hover">
+            <div class="text-indigo-600 text-3xl mb-4"></div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Dr. Name here</h3>
+            <p class="text-sm text-slate-600">
+                Designation, Department, Institution
+            </p>
+        </div>
+
+        <div class="soft-card rounded-2xl p-6 card-hover">
+            <div class="text-teal-600 text-3xl mb-4"></div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Dr. Name here</h3>
+            <p class="text-sm text-slate-600">
+                Designation, Department, Institution
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Office Bearers -->
+<section class="py-6 fade-in-up">
+    <div class="soft-card rounded-3xl p-8 md:p-10">
+        <div class="text-center mb-10">
+            <h2 class="section-title">OFFICE BEARERS (NATIONAL IATP)</h2>
+            <p class="section-subtitle mt-2">
+                National leadership and office bearers of IATP.
+            </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Card 1 -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-100 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/office_bearers/dr_sc_parija.png') }}"
+                        alt="Office Bearer 1" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800">Prof. Dr S.C.Parija </h3>
+                <p class="text-sm text-blue-700 mt-1">PRESIDENT, IATP</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-cyan-100 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/office_bearers/dr_s_geethalakshmi.png') }}"
+                        alt="Office Bearer 2" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800">Prof. Dr. S. Geethalakshmi</h3>
+                <p class="text-sm text-blue-700 mt-1">VICE-PRESIDENT, IATP</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-teal-100 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/office_bearers/dr_ujjala_ghoshal.png') }}"
+                        alt="Office Bearer 3" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800">Prof. Dr Ujjala Ghoshal</h3>
+                <p class="text-sm text-blue-700 mt-1">SECRETARY, IATP</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-sky-100 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/office_bearers/dr_nonika_rajkumari.png') }}"
+                        alt="Office Bearer 4" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800">Dr. Nonika Rajkumari</h3>
+                <p class="text-sm text-blue-700 mt-1">TREASURER</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-indigo-100 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/office_bearers/dr_anuradha_de.png') }}"
+                        alt="Office Bearer 5" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800">Dr. Anuradha De </h3>
+                <p class="text-sm text-blue-700 mt-1">PRESIDENT, MAHARASHTRA - IATP</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-100 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/office_bearers/dr_yagnesh_thakar.png') }}"
+                        alt="Office Bearer 6" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800">Dr. Yagnesh Thakar</h3>
+                <p class="text-sm text-blue-700 mt-1">VICE-PRESIDENT, MAHARASHTRA - IATP</p>
+            </div>
+
+            <!-- Card 7 -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-100 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/office_bearers/dr_meena_mishra.png') }}"
+                        alt="Office Bearer 7" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800">Dr. Meena Mishra</h3>
+                <p class="text-sm text-blue-700 mt-1">VICE-PRESIDENT, MAHARASHTRA - IATP</p>
+            </div>
+
+            <!-- Card 8 -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-100 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/office_bearers/dr_gopal_agrawal.png') }}"
+                        alt="Office Bearer 8" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800">Dr. Gopal Agrawal</h3>
+                <p class="text-sm text-blue-700 mt-1">SECRETARY, MAHARASHTRA – IATP</p>
+            </div>
+
+            <!-- Card 9 -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-100 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/office_bearers/dr_chaya_kumar.png') }}"
+                        alt="Office Bearer 9" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800">Dr. Chaya A. Kumar</h3>
+                <p class="text-sm text-blue-700 mt-1">TREASURER, MAHARASHTRA – IATP</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-10 fade-in-up">
+    <div class="soft-card rounded-3xl p-8 md:p-10">
+
+        <!-- Heading -->
+        <div class="text-center mb-8">
+            <h2 class="section-title">
+                Office Bearers of Maharashtra Chapter (MC-IATP)
+            </h2>
+            <p class="section-subtitle mt-2">
+                Leadership team of the Maharashtra Chapter of Indian Academy of Tropical Parasitology
+            </p>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+                <h3 class="font-semibold text-slate-800">Dr. Umesh Hassani</h3>
+                <p class="text-sm text-blue-700 mt-1">Joint Secretary</p>
+            </div>
+
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+                <h3 class="font-semibold text-slate-800">Dr. Alpana Wagh</h3>
+                <p class="text-sm text-blue-700 mt-1">Joint Treasurer</p>
+            </div>
+
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+                <h3 class="font-semibold text-slate-800">Dr. Rajesh Karyakarte</h3>
+                <p class="text-sm text-blue-700 mt-1">Executive Committee Member</p>
+            </div>
+
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+                <h3 class="font-semibold text-slate-800">Brig. Sourav Sen (Retd.)</h3>
+                <p class="text-sm text-blue-700 mt-1">Executive Committee Member</p>
+            </div>
+
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+                <h3 class="font-semibold text-slate-800">Dr. Supriya Tankhiwale</h3>
+                <p class="text-sm text-blue-700 mt-1">Executive Committee Member</p>
+            </div>
+
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+                <h3 class="font-semibold text-slate-800">Dr. Rajendra Surpam</h3>
+                <p class="text-sm text-blue-700 mt-1">Executive Committee Member</p>
+            </div>
+
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+                <h3 class="font-semibold text-slate-800">Dr. Nazneen Idris Malak</h3>
+                <p class="text-sm text-blue-700 mt-1">Executive Committee Member</p>
+            </div>
+
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+                <h3 class="font-semibold text-slate-800">Dr. Vilas Jahagirdar</h3>
+                <p class="text-sm text-blue-700 mt-1">Advisor MC-IATP</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="py-10 fade-in-up">
+    <div class="soft-card rounded-3xl p-8 md:p-10 max-w-3xl mx-auto">
+
+        <!-- Heading -->
+        <div class="text-center mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-800">
+                Important Dates
+            </h2>
+        </div>
+
+        <!-- Table -->
+        <div class="overflow-hidden rounded-xl border border-slate-200">
+            <div class="divide-y divide-slate-200 text-sm md:text-base">
+
+                <div class="grid grid-cols-2 px-5 py-3">
+                    <div class="text-slate-700 font-medium">
+                        Online Registration
+                    </div>
+                    <div class="text-right font-semibold text-slate-900">
+                        6<sup>th</sup> August 2026
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 px-5 py-3 bg-slate-50">
+                    <div class="text-slate-700 font-medium">
+                        Last Date of Abstract Submission (Oral/Poster)
+                    </div>
+                    <div class="text-right font-semibold text-slate-900">
+                        25<sup>th</sup> July 2026
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 px-5 py-3">
+                    <div class="text-slate-700 font-medium">
+                        Pre-Conference Workshop, Inauguration and Banquet
+                    </div>
+                    <div class="text-right font-semibold text-slate-900">
+                        7<sup>th</sup> August 2026
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 px-5 py-3 bg-slate-50">
+                    <div class="text-slate-700 font-medium">
+                        Scientific Sessions, GBM & Valedictory
+                    </div>
+                    <div class="text-right font-semibold text-slate-900">
+                        8<sup>th</sup> August 2026
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

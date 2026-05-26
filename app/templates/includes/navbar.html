@@ -1,0 +1,125 @@
+<nav class="bg-white/75 backdrop-blur-xl border-b border-slate-200/70 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-18 min-h-[72px]">
+
+            <!-- Logo -->
+            <a href="{{ url_for('main.home') }}" class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-600 via-cyan-500 to-teal-400 shadow-lg flex items-center justify-center text-white font-bold text-lg">
+                    M
+                </div>
+                <div>
+                    <p class="text-lg font-bold text-slate-800 leading-tight">MAHATROPACON 2026</p>
+                    <p class="text-xs text-slate-500 leading-tight">Conference Portal</p>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-2 text-sm font-medium">
+                <a href="{{ url_for('main.home') }}"
+                   class="px-4 py-2 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">
+                    Home
+                </a>
+
+                <a href="{{ url_for('main.about') }}"
+                   class="px-4 py-2 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">
+                    About
+                </a>
+
+                <a href="{{ url_for('main.speakers') }}"
+                   class="px-4 py-2 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">
+                    Speakers
+                </a>
+
+                <a href="{{ url_for('main.schedule') }}"
+                   class="px-4 py-2 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">
+                    Schedule
+                </a>
+
+                <a href="{{ url_for('main.contact') }}"
+                   class="px-4 py-2 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">
+                    Contact
+                </a>
+
+                {% if current_user.is_authenticated %}
+                    {% if current_user.email == config.ADMIN_EMAIL %}
+                        <a href="{{ url_for('admin.dashboard') }}"
+                           class="ml-2 px-4 py-2 rounded-xl bg-purple-100 text-purple-700 hover:bg-purple-200 transition">
+                            Admin
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('user.abstract_portal') }}"
+                           class="ml-2 px-4 py-2 rounded-xl bg-blue-100 text-blue-700 hover:bg-blue-200 transition">
+                            Abstract Portal
+                        </a>
+                    {% endif %}
+
+                    <a href="{{ url_for('auth.logout') }}"
+                       class="ml-2 px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600 transition shadow-sm">
+                        Logout
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}"
+                       class="ml-2 px-4 py-2 rounded-xl hover:bg-slate-100 hover:text-blue-700 transition">
+                        Login
+                    </a>
+
+                    <a href="{{ url_for('auth.conference_registration') }}"
+                       class="ml-1 primary-btn">
+                        Conference Registration
+                    </a>
+                {% endif %}
+            </div>
+
+            <!-- Mobile Button -->
+            <button type="button" id="menu-btn"
+                    class="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none">
+                <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden pb-4 animate-fade-in-down">
+            <div class="mt-2 rounded-2xl bg-white border border-slate-200 shadow-lg p-4 flex flex-col space-y-2 text-sm font-medium">
+                <a href="{{ url_for('main.home') }}" class="px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">Home</a>
+                <a href="{{ url_for('main.about') }}" class="px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">About</a>
+                <a href="{{ url_for('main.speakers') }}" class="px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">Speakers</a>
+                <a href="{{ url_for('main.schedule') }}" class="px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">Schedule</a>
+                <a href="{{ url_for('main.contact') }}" class="px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition">Contact</a>
+
+                {% if current_user.is_authenticated %}
+                    {% if current_user.email == config.ADMIN_EMAIL %}
+                        <a href="{{ url_for('admin.dashboard') }}"
+                           class="px-4 py-3 rounded-xl bg-purple-100 text-purple-700 hover:bg-purple-200 transition text-center">
+                            Admin
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('user.abstract_portal') }}"
+                           class="px-4 py-3 rounded-xl bg-blue-100 text-blue-700 hover:bg-blue-200 transition text-center">
+                            Abstract Portal
+                        </a>
+                    {% endif %}
+
+                    <a href="{{ url_for('auth.logout') }}"
+                       class="px-4 py-3 rounded-xl bg-red-500 text-white hover:bg-red-600 transition text-center">
+                        Logout
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}"
+                       class="px-4 py-3 rounded-xl hover:bg-slate-100 hover:text-blue-700 transition text-center">
+                        Login
+                    </a>
+
+                    <a href="{{ url_for('auth.conference_registration') }}"
+                       class="px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:opacity-95 transition text-center shadow-sm">
+                        Conference Registration
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

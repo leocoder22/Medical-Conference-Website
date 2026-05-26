@@ -1,0 +1,226 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(6, 182, 212, 0.08), transparent 30%),
+        #f8fafc;
+    color: #1e293b;
+}
+
+a, button {
+    transition: all 0.25s ease-in-out;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+}
+
+.soft-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1d4ed8;
+}
+
+.section-subtitle {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #2563eb, #06b6d4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.primary-btn {
+    background: linear-gradient(90deg, #2563eb, #0ea5e9);
+    color: white;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.28);
+}
+
+.secondary-btn {
+    background: white;
+    color: #2563eb;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+}
+
+.secondary-btn:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.45s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-down {
+    animation: fadeInDown 0.25s ease-out;
+}
+
+.overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+}
+.med-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.med-shape {
+    position: absolute;
+    opacity: 0.12;
+    filter: blur(0.2px);
+    animation: floatSlow 10s ease-in-out infinite;
+}
+
+.med-shape svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.med-pill {
+    width: 90px;
+    height: 90px;
+}
+
+.med-syringe {
+    width: 110px;
+    height: 110px;
+}
+
+.med-cross {
+    width: 60px;
+    height: 60px;
+}
+
+.med-molecule {
+    width: 100px;
+    height: 100px;
+}
+
+.med-tube {
+    width: 85px;
+    height: 85px;
+}
+
+.float-delay-1 {
+    animation-delay: 1s;
+}
+
+.float-delay-2 {
+    animation-delay: 2.5s;
+}
+
+.float-delay-3 {
+    animation-delay: 4s;
+}
+
+.float-delay-4 {
+    animation-delay: 5.5s;
+}
+
+.float-delay-5 {
+    animation-delay: 7s;
+}
+
+@keyframes floatSlow {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(3deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+@keyframes driftSide {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(8px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.drift-side {
+    animation: driftSide 12s ease-in-out infinite;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-attachment: fixed;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    outline: none;
+    transition: 0.2s;
+}
+
+.input-field:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+

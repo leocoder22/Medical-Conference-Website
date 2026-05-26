@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Conference Registration | Medical Conference{% endblock %}
+
+{% block content %}
+<section class="py-16">
+    <div class="max-w-2xl mx-auto bg-white shadow-md rounded-xl p-8">
+        <h1 class="text-3xl font-bold text-blue-700 mb-6 text-center">
+            Conference Registration
+        </h1>
+
+        <div class="mb-6 rounded-xl bg-green-50 p-4 border border-green-100">
+            <h2 class="text-lg font-semibold text-green-700 mb-3">Conference Fee Structure</h2>
+            <div class="space-y-2 text-sm text-gray-700">
+                {% for category_name, amount in fees.items() %}
+                    <div class="flex justify-between border-b border-green-100 pb-2">
+                        <span>{{ category_name }}</span>
+                        <span class="font-semibold">₹{{ amount }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+            <p class="text-xs text-gray-500 mt-3">
+                The correct amount will be filled automatically on the payment page after you choose your category.
+            </p>
+        </div>
+
+        <form method="POST" class="space-y-5">
+            <div>
+                <label class="block font-medium mb-1">Registration Category</label>
+                <select name="category"
+                        class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="">Select Category</option>
+                    {% for category_name, amount in fees.items() %}
+                        <option value="{{ category_name }}">{{ category_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label class="block font-medium mb-1">Institution</label>
+                <input type="text" name="institution"
+                       class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label class="block font-medium mb-1">Phone Number</label>
+                <input type="text" name="phone"
+                       class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label class="block font-medium mb-1">City</label>
+                <input type="text" name="city"
+                       class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+                Continue to Payment
+            </button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block title %}Schedule | MAHATROPACON 2026{% endblock %}
+
+{% block content %}
+
+<section class="py-16">
+    <div class="max-w-7xl mx-auto space-y-12">
+
+        {% if schedule_days %}
+
+        {% for day_label, day in schedule_days.items() %}
+        <div class="soft-card rounded-3xl px-8 py-8 shadow-sm">
+
+            {% if current_user.is_authenticated and current_user.email == config.ADMIN_EMAIL %}
+
+            <form method="POST" action="{{ url_for('admin.update_schedule_day_card') }}" class="space-y-6">
+                <input type="hidden" name="original_day_label" value="{{ day_label }}">
+
+                <div class="flex items-center gap-3">
+                    <input type="text" name="day_title" value="{{ day.day_title }}"
+                        class="w-full text-2xl md:text-3xl font-bold border-b border-slate-200 focus:border-blue-500 outline-none pb-2 bg-transparent"
+                        required>
+
+                    <button type="submit" formaction="{{ url_for('admin.move_schedule_day') }}" formmethod="post"
+                        name="direction" value="up"
+                        class="w-10 h-10 rounded-full bg-slate-100 hover:bg-blue-100 text-slate-600 hover:text-blue-700 transition"
+                        title="Move Day Up">
+                        ↑
+                    </button>
+
+                    <button type="submit" formaction="{{ url_for('admin.move_schedule_day') }}" formmethod="post"
+                        name="direction" value="down"
+                        class="w-10 h-10 rounded-full bg-slate-100 hover:bg-blue-100 text-slate-600 hover:text-blue-700 transition"
+                        title="Move Day Down">
+                        ↓
+                    </button>
+
+                    <input type="hidden" name="day_label" value="{{ day_label }}">
+                </div>
+
+                <div
+                    class="grid grid-cols-[240px_minmax(0,1fr)_180px_180px] gap-6 text-sm font-semibold text-slate-500 pt-4 border-b pb-3">
+                    <div>Time</div>
+                    <div>Session</div>
+                    <div>Speaker</div>
+                    <div>Venue</div>
+                </div>
+
+                <div class="space-y-4">
+                    {% for row in day.rows %}
+                    <div
+                        class="grid grid-cols-[240px_minmax(0,1fr)_180px_180px] gap-6 items-center bg-slate-50 hover:bg-slate-100 transition rounded-xl px-5 py-5">
+
+                        <input type="hidden" name="session_id[]" value="{{ row.id }}">
+
+                        <div class="flex gap-2 items-center">
+                            <input type="time" name="from_time[]" value="{{ row.from_time if row.from_time else '' }}"
+                                class="input-field text-sm w-full">
+
+                            <span class="text-slate-400">–</span>
+
+                            <input type="time" name="to_time[]" value="{{ row.to_time if row.to_time else '' }}"
+                                class="input-field text-sm w-full">
+                        </div>
+
+                        <input type="text" name="title[]" value="{{ row.title if row.title else '' }}"
+                            placeholder="Session Title" class="input-field">
+
+                        <input type="text" name="speaker[]" value="{{ row.speaker if row.speaker else '' }}"
+                            placeholder="Speaker" class="input-field text-sm">
+
+                        <div class="flex gap-2 items-center">
+                            <input type="text" name="venue[]" value="{{ row.venue if row.venue else '' }}"
+                                placeholder="Venue" class="input-field text-sm">
+
+                            <button type="submit"
+                                formaction="{{ url_for('admin.delete_inline_schedule_item', item_id=row.id) }}"
+                                formmethod="post" onclick="return confirm('Delete this session?');"
+                                class="text-red-500 hover:text-red-700 text-sm shrink-0">
+                                ✕
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <button type="submit" class="primary-btn">Save Day</button>
+
+                    <button type="submit" formaction="{{ url_for('admin.save_day_and_add_session') }}" formmethod="post"
+                        class="secondary-btn">
+                        + Add Session
+                    </button>
+                </div>
+
+            </form>
+
+            {% else %}
+
+            <h2 class="text-2xl md:text-3xl font-bold mb-6">
+                {{ day.day_title }}
+            </h2>
+
+            <div
+                class="grid grid-cols-[240px_minmax(0,1fr)_180px_180px] gap-6 text-sm font-semibold text-slate-500 border-b pb-3 mb-4">
+                <div>Time</div>
+                <div>Session</div>
+                <div>Speaker</div>
+                <div>Venue</div>
+            </div>
+
+            <div class="space-y-4">
+                {% for row in day.rows %}
+                <div
+                    class="grid grid-cols-[240px_minmax(0,1fr)_180px_180px] gap-6 items-center bg-white border border-slate-100 rounded-xl px-6 py-5 hover:shadow-sm transition">
+
+                    <div class="text-base font-semibold text-slate-700 whitespace-nowrap">
+                        {{ row.from_time|ampm }}
+                        <span class="mx-2 text-slate-400">–</span>
+                        {{ row.to_time|ampm }}
+                    </div>
+
+                    <div class="text-lg font-semibold text-slate-800 leading-snug">
+                        {{ row.title }}
+                    </div>
+
+                    <div class="text-base text-slate-600">
+                        {{ row.speaker }}
+                    </div>
+
+                    <div class="text-base text-slate-600">
+                        {{ row.venue }}
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+            {% endif %}
+
+        </div>
+        {% endfor %}
+
+        {% if current_user.is_authenticated and current_user.email == config.ADMIN_EMAIL %}
+        <div class="flex justify-end">
+            <form method="POST" action="{{ url_for('admin.create_schedule_day') }}">
+                <button class="primary-btn text-lg px-6 py-3">
+                    + Add Day
+                </button>
+            </form>
+        </div>
+        {% endif %}
+
+        {% else %}
+
+        <div class="soft-card rounded-3xl p-12 text-center">
+            <h3 class="text-xl font-bold text-slate-800 mb-2">
+                No schedule added yet
+            </h3>
+            <p class="text-slate-500 mb-6">
+                Schedule will appear here once added.
+            </p>
+
+            {% if current_user.is_authenticated and current_user.email == config.ADMIN_EMAIL %}
+            <form method="POST" action="{{ url_for('admin.create_schedule_day') }}">
+                <button class="primary-btn">
+                    + Add Day
+                </button>
+            </form>
+            {% endif %}
+        </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

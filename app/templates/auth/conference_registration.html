@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}Conference Registration | MAHATROPACON 2026{% endblock %}
+
+{% block content %}
+
+<section class="py-16">
+    <div class="max-w-3xl mx-auto soft-card rounded-3xl p-8 md:p-10 fade-in-up">
+
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-6">
+            Conference <span class="gradient-text">Registration</span>
+        </h1>
+
+        <form method="POST" class="space-y-6">
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <input type="text" name="full_name" placeholder="Full Name (As required on Certificate)"
+                    class="input-field" required>
+
+                <input type="number" name="age" placeholder="Age" class="input-field" required>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <select name="gender" class="input-field" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <input type="email" name="email"
+                    placeholder="Email Address (E-Certificate will be mailed to this Email Address)" class="input-field"
+                    required>
+            </div>
+
+            <input type="text" name="phone" placeholder="Mobile Number (For WhatsApp group)" class="input-field"
+                required>
+
+            <input type="text" name="institution_name" placeholder="Name of Institution" class="input-field" required>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <input type="text" name="designation" placeholder="Designation" class="input-field" required>
+
+                <input type="text" name="department" placeholder="Department" class="input-field" required>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <select name="council_name" class="input-field">
+                    <option value="">Select Council / Registration Authority</option>
+                    <option value="National Medical Commission (NMC)">National Medical Commission (NMC)</option>
+                    <option value="Maharashtra Medical Council">Maharashtra Medical Council</option>
+                    <option value="Karnataka Medical Council">Karnataka Medical Council</option>
+                    <option value="Tamil Nadu Medical Council">Tamil Nadu Medical Council</option>
+                    <option value="Delhi Medical Council">Delhi Medical Council</option>
+                    <option value="Uttar Pradesh Medical Council">Uttar Pradesh Medical Council</option>
+                    <option value="Gujarat Medical Council">Gujarat Medical Council</option>
+                    <option value="West Bengal Medical Council">West Bengal Medical Council</option>
+                    <option value="Rajasthan Medical Council">Rajasthan Medical Council</option>
+                    <option value="Madhya Pradesh Medical Council">Madhya Pradesh Medical Council</option>
+                    <option value="Telangana Medical Council">Telangana Medical Council</option>
+                    <option value="Andhra Pradesh Medical Council">Andhra Pradesh Medical Council</option>
+                    <option value="Kerala Medical Council">Kerala Medical Council</option>
+                    <option value="Dental Council of India">Dental Council of India</option>
+                    <option value="Indian Nursing Council">Indian Nursing Council</option>
+                    <option value="Allied Health Council">Allied Health Council</option>
+                    <option value="Foreign Medical Council / Registration Authority">Foreign Medical Council /
+                        Registration Authority</option>
+                    <option value="Not Applicable (Student / UG)">Not Applicable (Student / UG)</option>
+                </select>
+
+                <input type="text" name="medical_council_registration_number" placeholder="Registration Number"
+                    class="input-field">
+            </div>
+
+            <div>
+                <label class="block font-medium mb-3">Registration Details</label>
+
+                <div class="space-y-3">
+                    {% for key, value in registration_fees.items() %}
+                    <label
+                        class="flex items-center gap-3 border rounded-xl px-4 py-3 hover:border-blue-400 transition cursor-pointer">
+                        <input type="radio" name="registration_type" value="{{ key }}" class="w-4 h-4 text-blue-600"
+                            required>
+                        <div>
+                            <p class="font-medium text-slate-800">{{ key }}</p>
+                            <p class="text-sm text-blue-700">₹{{ value }}</p>
+                        </div>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- <div class="text-center">
+                <p class="text-sm text-slate-600 mb-3">
+                    Registration fees to be paid by scanning the QR code below
+                </p>
+                <img src="{{ url_for('static', filename='images/qr.png') }}" alt="QR Code"
+                    class="mx-auto w-48 h-48 object-contain rounded-xl shadow">
+            </div> -->
+
+            <div class="grid md:grid-cols-2 gap-6 items-center bg-slate-50 p-6 rounded-2xl shadow">
+                <!-- QR Code Section -->
+                <div class="text-center">
+                    <p class="text-sm text-slate-600 mb-3">
+                        Registration fees to be paid by scanning the QR code below
+                    </p>
+                    <img src="{{ url_for('static', filename='images/qr.png') }}" alt="QR Code"
+                        class="mx-auto w-48 h-48 object-contain rounded-xl shadow">
+                </div>
+
+                <!-- Bank Details Section -->
+                <div class="bg-white p-5 rounded-xl shadow text-left">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4">Bank Details</h3>
+                    <div class="space-y-2 text-sm text-slate-700">
+                        <p><span class="font-medium">Account Name:</span> Your Account Name</p>
+                        <p><span class="font-medium">Bank Name:</span> Your Bank Name</p>
+                        <p><span class="font-medium">Account Number:</span> XXXXXXXXXXXX</p>
+                        <p><span class="font-medium">IFSC Code:</span> XXXXXXXX</p>
+                        <p><span class="font-medium">Branch:</span> Your Branch Name</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ----------------- -->
+
+            <input type="text" name="transaction_id" placeholder="Please enter complete Transaction ID / UPI ID"
+                class="input-field" required>
+
+            <button type="submit" class="w-full primary-btn py-3 text-lg">
+                Submit Registration
+            </button>
+
+        </form>
+    </div>
+</section>
+
+{% endblock %}

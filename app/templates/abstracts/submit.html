@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Submit Abstract | Medical Conference{% endblock %}
+
+{% block content %}
+<section class="py-16">
+    <div class="max-w-3xl mx-auto bg-white shadow-md rounded-xl p-8">
+        <h1 class="text-3xl font-bold text-blue-700 mb-6 text-center">
+            Submit Abstract
+        </h1>
+
+        <form method="POST" class="space-y-5">
+            <div>
+                <label class="block font-medium mb-1">Abstract Title</label>
+                <input type="text" name="title" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label class="block font-medium mb-1">Category</label>
+                <select name="category" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="">Select Category</option>
+                    <option value="Original Research">Original Research</option>
+                    <option value="Case Report">Case Report</option>
+                    <option value="Review">Review</option>
+                    <option value="Innovation">Innovation</option>
+                    <option value="Public Health">Public Health</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block font-medium mb-1">Authors</label>
+                <input type="text" name="authors" placeholder="Example: Sarthak Bankar, Dr. A, Dr. B" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label class="block font-medium mb-1">Presenting Author</label>
+                <input type="text" name="presenting_author" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label class="block font-medium mb-1">Abstract Text</label>
+                <textarea name="abstract_text" rows="8" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+
+            <div>
+                <label class="block font-medium mb-1">Keywords</label>
+                <input type="text" name="keywords" placeholder="Example: dengue, rapid test, diagnosis" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label class="block font-medium mb-1">Presentation Preference</label>
+                <select name="presentation_preference" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="">Select Preference</option>
+                    <option value="Oral">Oral</option>
+                    <option value="Poster">Poster</option>
+                </select>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+                Submit Abstract
+            </button>
+        </form>
+    </div>
+</section>
+{% endblock %}

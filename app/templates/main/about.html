@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+
+{% block title %}About | MAHATROPACON 2026{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="relative overflow-hidden rounded-3xl soft-card px-6 py-14 md:px-12 md:py-16 fade-in-up mb-12">
+
+    <div class="absolute -top-10 -right-10 w-56 h-56 bg-blue-100 rounded-full blur-3xl opacity-60"></div>
+    <div class="absolute -bottom-12 -left-10 w-60 h-60 bg-cyan-100 rounded-full blur-3xl opacity-60"></div>
+
+    <div class="relative max-w-4xl mx-auto text-center">
+
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+            About 3rd <span class="gradient-text">MAHATROPACON</span> 2026
+        </h1>
+
+        <p class="text-slate-600 text-base md:text-lg leading-relaxed text-justify md:text-justify">
+            The Indian Academy of Tropical Parasitology (IATP), established in 2007 under the leadership of S. C.
+            Parija, has significantly advanced tropical parasitology in India by promoting research, education, and
+            interdisciplinary collaboration across protozoology and helminthology.
+            <br><br>
+            MAHATROPACON 2026, the 3rd Maharashtra State Chapter Conference, to be hosted at Datta Meghe Medical
+            College, represents an important step in strengthening networks among microbiologists, parasitologists,
+            clinicians, and researchers addressing parasitic diseases of public health relevance. The theme, “Breaking
+            Silos – Innovative Solutions for Parasitic Diseases,” emphasizes the need for integrated, multidisciplinary
+            approaches linking diagnostics, clinical care, research, and public health.
+            <br><br>
+            The conference will feature expert lectures, panel discussions, and interactive sessions, including
+            pre-conference workshops on advanced diagnostic methodologies. It aims to provide a robust platform for
+            knowledge exchange, academic collaboration, and the development of innovative strategies to address
+            parasitic diseases.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- MESSAGES SECTION -->
+<section class="space-y-6 mb-14 fade-in-up max-w-5xl mx-auto">
+
+    <!-- MESSAGE CARD TEMPLATE -->
+    <!-- Repeat block for each message -->
+
+    <!-- CARD 1 -->
+    <div class="soft-card rounded-2xl overflow-hidden">
+
+        <!-- HEADER -->
+        <button onclick="toggleMessage('msg1')"
+            class="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-slate-50 transition">
+            <div class="flex items-center gap-4">
+                <img src="{{ url_for('static', filename='images/office_bearers/dr_sc_parija.png') }}"
+                    class="w-14 h-14 rounded-full object-cover border-2 border-blue-100">
+
+                <div>
+                    <h2 class="text-lg font-bold text-blue-700 leading-tight">
+                        Prof Subhash Chandra Parija
+                    </h2>
+                    <p class="text-sm text-slate-500">President, IATP</p>
+                </div>
+            </div>
+
+            <span id="icon-msg1" class="text-slate-400 text-xl">+</span>
+        </button>
+
+        <!-- BODY -->
+        <div id="msg1" class="hidden px-6 pb-6 text-[15px] text-slate-600 leading-relaxed text-justify">
+            On behalf of the India Academy of Tropical Parasitology (IATP) family, and on my behalf, it is my immense
+            pleasure to welcome you all to the third annual Congress of the Maharashtra Chapter of the IATP.
+            MAHATROPACON -2026 is being hosted at Datta Meghe Medical College, an institute of repute in Nagpur, during
+            7th–8th August 2026.
+            <br>
+            At the outset, I take this opportunity to congratulate Prof. Nandkishor Bankar, Professor and Head,
+            Department of Microbiology, and his organizing team for organizing MAHATROPACON -2026. On behalf of the
+            IATP, I wish to place on record our sincere thanks and appreciation to Prof. Nandkishor Bankar for his
+            strong leadership in organizing the conference.
+            I wish to share with you all that, currently, the IATP has more than 17 state chapters, including the
+            Maharashtra Chapter. The IATP provides a platform for the exchange of ideas and collaboration among all
+            members pertaining to academic, research, diagnostic, and outreach activities in parasitic diseases across
+            the country.
+            <br>
+            MAHATROPACON -2026 is planning to host an academic programme highlighting newer developments in diagnostics
+            and epidemiology, with a theme on “Breaking Silos – Innovative Solutions for Parasitic Diseases.” The
+            conference will include two pre-conference workshops, orations, guest lectures, oral paper and poster
+            presentations, panel discussions, etc.
+            <br>
+            We are confident that the various programmes during the conference will contribute immensely towards skill
+            augmentation and understanding of recent advances in parasitic diseases, including academics, research,
+            diagnostics, and public health.
+
+            <br>
+            Wishing you all the best for the success of Mahatropacon-2026.
+            <br>
+            <br>
+            Prof Subhash Chandra Parija (MD, PhD, DSC, FRCPath, FAMS)<br>
+            President - Indian Academy of Tropical Parasitology.<br>
+            Former Director, JIPMER, Pondicherry.<br>
+            Former Vice Chancellor, Shri Balaji Vidyapeeth, Pondicherry .<br>
+            Professor Emeritus, National Academy of Medical Sciences, New Delhi.<br>
+
+        </div>
+
+    </div>
+
+    <!-- ADD SAME STRUCTURE FOR OTHER 3 MESSAGES (change id msg2/msg3/msg4 and content) -->
+
+    <!-- CARD 2 -->
+    <div class="soft-card rounded-2xl overflow-hidden">
+
+        <!-- HEADER -->
+        <button onclick="toggleMessage('msg2')"
+            class="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-slate-50 transition">
+            <div class="flex items-center gap-4">
+                <img src="{{ url_for('static', filename='images/office_bearers/dr_anuradha_de.png') }}"
+                    class="w-14 h-14 rounded-full object-cover border-2 border-blue-100">
+
+                <div>
+                    <h2 class="text-lg font-bold text-blue-700 leading-tight">
+                        Dr. Anuradha De
+                    </h2>
+                    <p class="text-sm text-slate-500">President, IATP</p>
+                </div>
+            </div>
+
+            <span id="icon-msg2" class="text-slate-400 text-xl">+</span>
+        </button>
+
+        <!-- BODY -->
+        <div id="msg2" class="hidden px-6 pb-6 text-[15px] text-slate-600 leading-relaxed text-justify">
+            It gives me immense pleasure to extend a warm welcome for the Third Maharashtra Chapter Conference of Indian
+            Academy of Tropical Parasitology (IATP) – MAHATROPACON 2026, which will be held on 8th August 2026, with two
+            preconference workshops on 7th August 2026.
+            <br>
+            It is being organized by the Department of Microbiology, Dutta Meghe Medical College in Nagpur, the “Orange
+            City” of India.
+            <br>
+            The theme of the Conference is appropriately chosen as “Breaking Silos – Innovative solutions for Parasitic
+            Diseases”. It will focus on diagnosis of Parasitology, including the latest technical advancements in
+            Parasitic diseases. It will bring together teachers, resource persons, academicians, research scholars and
+            students under one roof. Eminent stalwarts in the field of Parasitology will share their expertise in this
+            platform. It will also boost us with Oral and Poster presentations, Post-graduate Quiz, etc.
+            <br>
+            I am sure you will have an enriching experience, fostering growth and deeper understanding. Your active
+            participation in this conference will provide opportunities for knowledge sharing and effective networking.
+            May it enlighten our esteemed guests, faculty and all the delegates and leave a permanent mark in the field
+            of Parasitology.
+            <br>
+
+            We look forward to your presence at MAHATROPACON 2006 and I wish the conference a grand success.
+
+            <br>
+            <br>
+            Dr. Anuradha De<br>
+            President, Maharashtra Chapter of IATP.<br>
+            Former Professor in Microbiology,<br>
+            T. N. Medical College & B. Y. L. Nair Ch. Hospital,<br>
+            Mumbai.<br>
+
+        </div>
+
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="soft-card rounded-2xl overflow-hidden">
+
+        <!-- HEADER -->
+        <button onclick="toggleMessage('msg3')"
+            class="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-slate-50 transition">
+            <div class="flex items-center gap-4">
+                <img src="{{ url_for('static', filename='images/speakers/dr_nandkishor_bankar.png') }}"
+                    class="w-14 h-14 rounded-full object-cover border-2 border-blue-100">
+
+                <div>
+                    <h2 class="text-lg font-bold text-blue-700 leading-tight">
+                        Dr. Nandkishor Bankar
+                    </h2>
+                    <p class="text-sm text-slate-500">Prof & Head, Dept of Microbiology</p>
+                </div>
+            </div>
+
+            <span id="icon-msg3" class="text-slate-400 text-xl">+</span>
+        </button>
+
+        <!-- BODY -->
+        <div id="msg3" class="hidden px-6 pb-6 text-[15px] text-slate-600 leading-relaxed text-justify">
+            It gives me immense pleasure to welcome you to MAHATROPACON 2026, the 3rd Maharashtra State Chapter
+            Conference of the Indian Academy of Tropical Parasitology, being hosted at Datta Meghe Medical College. This
+            conference represents a significant academic platform bringing together experts, researchers, and clinicians
+            dedicated to advancing the field of tropical parasitology.
+            <br>
+            The theme, “Breaking Silos – Innovative Solutions for Parasitic Diseases,” aptly reflects the need for
+            integrated, multidisciplinary approaches in addressing the evolving challenges posed by parasitic
+            infections. In an era where emerging and re-emerging infections continue to impact public health,
+            collaboration between microbiologists, parasitologists, clinicians, and public health professionals is
+            essential for developing effective diagnostic, therapeutic, and preventive strategies.
+            <br>
+            The scientific program has been carefully designed to provide a comprehensive academic experience, including
+            expert lectures, panel discussions, and hands-on workshops focusing on recent advances in parasitology and
+            diagnostic methodologies. I am confident that this conference will facilitate meaningful knowledge exchange,
+            stimulate research ideas, and foster long-term collaborations.
+            <br>
+            I warmly invite all delegates to actively participate, share their expertise, and contribute to the success
+            of this academic endeavor. I also encourage you to experience the vibrant culture and hospitality of Nagpur.
+            <br>
+            I look forward to welcoming you all to MAHATROPACON 2026.
+            <br><br>
+            Dr. Nandkishor J. Bankar<br>
+            Professor & Head, Department of Microbiology<br>
+            Datta Meghe Medical College, Nagpur<br>
+        </div>
+
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="soft-card rounded-2xl overflow-hidden">
+
+        <!-- HEADER -->
+        <button onclick="toggleMessage('msg4')"
+            class="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-slate-50 transition">
+            <div class="flex items-center gap-4">
+                <img src="{{ url_for('static', filename='images/speakers/dr_gargi_mudey.png') }}"
+                    class="w-14 h-14 rounded-full object-cover border-2 border-blue-100">
+
+                <div>
+                    <h2 class="text-lg font-bold text-blue-700 leading-tight">
+                        Dr. Gargi Mudey
+                    </h2>
+                    <p class="text-sm text-slate-500">Prof & Head, Dept of Microbiology</p>
+                </div>
+            </div>
+
+            <span id="icon-msg4" class="text-slate-400 text-xl">+</span>
+        </button>
+
+        <!-- BODY -->
+        <div id="msg4" class="hidden px-6 pb-6 text-[15px] text-slate-600 leading-relaxed text-justify">
+            It is a privilege to extend a warm welcome to all delegates for MAHATROPACON 2026, the 3rd Maharashtra State
+            Chapter Conference of the Indian Academy of Tropical Parasitology, being hosted at Datta Meghe Medical
+            College. This conference serves as an important academic forum for sharing knowledge, fostering innovation,
+            and strengthening collaboration in the field of tropical parasitology.
+            <br>
+            The theme, “Breaking Silos – Innovative Solutions for Parasitic Diseases,” highlights the growing need for
+            interdisciplinary integration in addressing parasitic infections of public health importance. It is
+            essential that we move beyond conventional boundaries and adopt collaborative approaches that connect
+            laboratory research, clinical practice, and community health.
+            <br>
+            The scientific program has been thoughtfully curated to include expert deliberations, panel discussions, and
+            interactive sessions, along with pre-conference workshops focusing on recent advances in diagnostics and
+            research methodologies. I am confident that these sessions will enrich participants with updated knowledge
+            and practical insights.
+            <br>
+            I encourage all delegates to actively engage in the scientific discussions and utilize this platform to
+            exchange ideas, build networks, and contribute to the advancement of parasitology. I also hope you take time
+            to experience the vibrant culture and hospitality of Nagpur.
+            <br>
+            Wishing you a productive and memorable conference.
+            <br><br>
+            Dr. Gargi Mudey <br>
+            Professor & Head, Department of Microbiology<br>
+            Datta Meghe Medical College, Nagpur <br>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT NAGPUR -->
+<section class="mb-14 fade-in-up">
+    <div class="soft-card rounded-3xl p-8 md:p-10 text-justify max-w-4xl mx-auto">
+
+        <h2 class="text-2xl font-bold text-slate-800 mb-4 text-center">
+            About Nagpur
+        </h2>
+
+        <p class="text-slate-600 text-[15px] md:text-base leading-relaxed">
+            Nagpur, known as the Orange City of India and the geographical centre of the country, is strategically
+            located with excellent connectivity by air, rail, and road, making it a key administrative, educational,
+            and commercial hub of central India. The city holds historical significance with Deekshabhoomi, associated
+            with B. R. Ambedkar, while landmarks such as Zero Mile Stone and Futala Lake add cultural and recreational
+            value.
+            <br><br>
+            Nagpur also serves as a gateway to prominent wildlife reserves, including Tadoba–Andhari Tiger Reserve (~140
+            km) and Pench Tiger Reserve (~90 km), both renowned for rich biodiversity and tiger sightings.
+            <br><br>
+            The city’s culinary identity is highlighted by its bold Saoji cuisine, along with local specialties such as
+            tarri poha and patodi rassa. With its blend of accessibility, cultural heritage, and academic vibrancy,
+            Nagpur provides an ideal setting for MAHATROPACON 2026.
+        </p>
+
+    </div>
+</section>
+
+<!-- SCRIPT -->
+<script>
+    function toggleMessage(id) {
+        const content = document.getElementById(id);
+        const icon = document.getElementById("icon-" + id);
+
+        if (content.classList.contains("hidden")) {
+            content.classList.remove("hidden");
+            icon.innerHTML = "−";
+        } else {
+            content.classList.add("hidden");
+            icon.innerHTML = "+";
+        }
+    }
+</script>
+
+{% endblock %}

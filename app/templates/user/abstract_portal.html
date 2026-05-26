@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+
+{% block title %}Abstract Portal | MAHATROPACON 2026{% endblock %}
+
+{% block content %}
+
+<section class="py-12">
+
+    <!-- Welcome -->
+    <div class="max-w-5xl mx-auto mb-8 fade-in-up">
+        <div class="soft-card rounded-3xl p-6 md:p-8">
+            <h1 class="text-2xl md:text-3xl font-bold mb-2">
+                Welcome, <span class="gradient-text">{{ user.full_name }}</span>
+            </h1>
+
+            <p class="text-slate-600 text-sm">
+                You can submit and manage your abstracts here.
+            </p>
+        </div>
+    </div>
+
+    <!-- Registration Info -->
+    <div class="max-w-5xl mx-auto mb-8 fade-in-up">
+        <div class="soft-card rounded-3xl p-6 md:p-8">
+
+            <h2 class="text-xl font-semibold mb-4">Your Registration Details</h2>
+
+            <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-700">
+
+                <div>
+                    <p class="text-slate-500">Name</p>
+                    <p class="font-medium">{{ registration.full_name }}</p>
+                </div>
+
+                <div>
+                    <p class="text-slate-500">Email</p>
+                    <p class="font-medium">{{ registration.email }}</p>
+                </div>
+
+                <div>
+                    <p class="text-slate-500">Institution</p>
+                    <p class="font-medium">{{ registration.institution_name }}</p>
+                </div>
+
+                <div>
+                    <p class="text-slate-500">Designation</p>
+                    <p class="font-medium">{{ registration.designation }}</p>
+                </div>
+
+                <div>
+                    <p class="text-slate-500">Registration Type</p>
+                    <p class="font-medium">{{ registration.registration_type }}</p>
+                </div>
+
+                <div>
+                    <p class="text-slate-500">Payment Status</p>
+                    {% if registration.payment_verified %}
+                        <p class="text-green-600 font-semibold">Verified</p>
+                    {% else %}
+                        <p class="text-yellow-600 font-semibold">Pending Verification</p>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Important Dates -->
+    <!-- <section class="max-w-5xl mx-auto mb-8 fade-in-up">
+        <div class="soft-card rounded-3xl p-6 md:p-8">
+
+            <div class="text-center mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-800">
+                    Important Dates
+                </h2>
+            </div>
+
+            <div class="overflow-hidden rounded-xl border border-slate-200">
+                <div class="divide-y divide-slate-200 text-sm md:text-base">
+
+                    <div class="grid grid-cols-2 px-5 py-3">
+                        <div class="text-slate-700 font-medium">
+                            Online Registration
+                        </div>
+                        <div class="text-right font-semibold text-slate-900">
+                            6<sup>th</sup> August 2026
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 px-5 py-3 bg-slate-50">
+                        <div class="text-slate-700 font-medium">
+                            Last Date of Abstract Submission (Oral/Poster)
+                        </div>
+                        <div class="text-right font-semibold text-slate-900">
+                            25<sup>th</sup> July 2026
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 px-5 py-3">
+                        <div class="text-slate-700 font-medium">
+                            Pre-Conference Workshop, Inauguration and Banquet
+                        </div>
+                        <div class="text-right font-semibold text-slate-900">
+                            7<sup>th</sup> August 2026
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 px-5 py-3 bg-slate-50">
+                        <div class="text-slate-700 font-medium">
+                            Scientific Sessions, GBM & Valedictory
+                        </div>
+                        <div class="text-right font-semibold text-slate-900">
+                            8<sup>th</sup> August 2026
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section> -->
+
+
+    <!-- Submit Abstract Button -->
+    <div class="max-w-5xl mx-auto mb-6 flex justify-end fade-in-up">
+        <a href="{{ url_for('user.submit_abstract') }}" class="primary-btn">
+            + Submit New Abstract
+        </a>
+    </div>
+
+    <!-- Abstract List -->
+    <div class="max-w-5xl mx-auto fade-in-up">
+        <div class="soft-card rounded-3xl p-6 md:p-8">
+
+            <h2 class="text-xl font-semibold mb-4">Your Abstract Submissions</h2>
+
+            {% if abstracts %}
+                <div class="space-y-5">
+
+                    {% for abstract in abstracts %}
+                    <div class="border border-slate-100 rounded-2xl p-5 bg-white hover:shadow-sm transition">
+
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+
+                            <div>
+                                <h3 class="font-semibold text-slate-800 text-lg">
+                                    {{ abstract.title }}
+                                </h3>
+
+                                <p class="text-sm text-slate-600 mt-1">
+                                    {{ abstract.category }}
+                                </p>
+
+                                <p class="text-xs text-slate-400 mt-1">
+                                    Submitted on {{ abstract.created_at.strftime('%d %b %Y') }}
+                                </p>
+                            </div>
+
+                            <div class="md:text-right">
+                                {% if abstract.status == 'accepted' %}
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">
+                                        Accepted as {{ abstract.accepted_as }}
+                                    </span>
+                                    <p class="text-sm text-green-700 font-semibold mt-2">
+                                        Abstract ID: {{ abstract.abstract_code }}
+                                    </p>
+                                {% elif abstract.status == 'rejected' %}
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700">
+                                        Rejected
+                                    </span>
+                                {% else %}
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700">
+                                        Submitted for Review
+                                    </span>
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4 mt-4 text-sm text-slate-600">
+                            <div>
+                                <span class="font-medium text-slate-700">Presenting Author:</span>
+                                {{ abstract.presenting_author }}
+                            </div>
+
+                            <div>
+                                <span class="font-medium text-slate-700">Preference:</span>
+                                {{ abstract.presentation_preference }}
+                            </div>
+
+                            {% if abstract.keywords %}
+                            <div class="md:col-span-2">
+                                <span class="font-medium text-slate-700">Keywords:</span>
+                                {{ abstract.keywords }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            {% else %}
+                <p class="text-slate-500 text-sm">
+                    No abstracts submitted yet.
+                </p>
+            {% endif %}
+
+        </div>
+    </div>
+
+</section>
+
+<!-- Abstract Instructions -->
+    <div class="max-w-5xl mx-auto mb-8 fade-in-up">
+        <div class="rounded-3xl p-6 md:p-8 bg-slate-900 text-white shadow-xl">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
+                INSTRUCTIONS FOR ABSTRACT SUBMISSION
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border border-white/70 text-left text-base">
+                    <tr class="border-b border-white/70">
+                        <td class="p-3 font-bold" colspan="2">
+                            ABSTRACT FORMAT (For Oral / Poster Presentation)
+                        </td>
+                    </tr>
+
+                    <tr class="border-b border-white/70">
+                        <td class="p-3 font-bold w-40">Title:</td>
+                        <td class="p-3"></td>
+                    </tr>
+
+                    <tr class="border-b border-white/70">
+                        <td class="p-3 font-bold">Author(s):</td>
+                        <td class="p-3">(Presenting author name to be <u>underlined</u>)</td>
+                    </tr>
+
+                    <tr class="border-b border-white/70">
+                        <td class="p-3 align-top font-bold" colspan="2">
+                            Structured Format <span class="font-normal">(Maximum 250 words):</span>
+                            <div class="font-normal mt-2 ml-8 space-y-1">
+                                <div>a) &nbsp; Background &amp; Objectives</div>
+                                <div>b) &nbsp; Methodology</div>
+                                <div>c) &nbsp; Results</div>
+                                <div>d) &nbsp; Conclusion</div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="p-3 align-top font-bold" colspan="2">
+                            Details of Presenting Author:
+                            <div class="font-normal mt-2 ml-8 space-y-1">
+                                <div>a) &nbsp; Name &amp; Designation</div>
+                                <div>b) &nbsp; Address for Correspondence</div>
+                                <div>c) &nbsp; Mobile Number</div>
+                                <div>d) &nbsp; Email ID</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="mt-10">
+                <h3 class="text-2xl font-bold mb-4">
+                    GUIDELINES FOR ABSTRACT SUBMISSION
+                </h3>
+
+                <div class="space-y-2 text-base md:text-lg leading-relaxed">
+                    <div>a) &nbsp; Abstracts are invited for: &nbsp; Oral Paper Presentations &amp; Poster Presentations</div>
+                    <div>b) &nbsp; The submitted work must be original, unpublished, and not previously presented at any conference.</div>
+                    <div>c) &nbsp; The abstract should be structured (Background, Methodology, Results, Conclusion), limited to 250 words, and prepared in Times New Roman font in MS Word format (DOC/DOCX).</div>
+                    <div>d) &nbsp; The presenting author must be registered for the conference, with their name clearly underlined in the abstract.</div>
+                    <div>e) &nbsp; Complete contact details of the presenting author must be provided for correspondence.</div>
+                </div>
+            </div>
+
+            <div class="mt-10">
+                <h3 class="text-2xl font-bold mb-4">
+                    ABSTRACT SUBMISSION DETAILS
+                </h3>
+
+                <div class="space-y-2 text-base md:text-lg leading-relaxed">
+                    <div><span class="font-bold">Email for submission:</span> mahatropacon2026@gmail.com</div>
+                    <div><span class="font-bold">Last Date for Abstract Submission:</span> 25<sup>th</sup> July 2026</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

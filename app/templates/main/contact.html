@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact | Medical Conference{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="relative overflow-hidden rounded-3xl soft-card px-6 py-12 md:px-10 md:py-14 fade-in-up mb-10">
+    <div class="absolute -top-10 -right-10 w-52 h-52 bg-blue-100 rounded-full blur-3xl opacity-60"></div>
+    <div class="absolute -bottom-12 -left-10 w-56 h-56 bg-cyan-100 rounded-full blur-3xl opacity-60"></div>
+
+    <div class="relative text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+            Contact <span class="gradient-text">Information</span>
+        </h1>
+        <p class="text-slate-600 text-lg">
+            Get in touch for registration support, scientific queries, schedule clarification, or conference
+            coordination.
+        </p>
+    </div>
+</section>
+
+<!-- Contact Cards -->
+<section class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 fade-in-up">
+
+    <div class="soft-card rounded-2xl p-6 card-hover">
+        <div class="text-blue-600 text-3xl mb-4">📧</div>
+        <h2 class="text-lg font-bold text-slate-800 mb-2">Email</h2>
+        <p class="text-sm text-slate-600 mb-3">
+            Managing committee and official contact email for conference-related communication.
+        </p>
+        <p class="text-sm font-medium text-blue-700">
+            mahatropacon2026@gmail.com
+        </p>
+    </div>
+
+    <div class="soft-card rounded-2xl p-6 card-hover">
+        <div class="text-cyan-600 text-3xl mb-4">📞</div>
+        <h2 class="text-lg font-bold text-slate-800 mb-2">Phone</h2>
+        <p class="text-sm text-slate-600 mb-3">
+            In case of any query contact –
+        </p>
+        <p class="text-sm font-medium text-cyan-700">
+            Dr. Sarita Ugemuge :- 98222 20020 <br>
+            Dr. Dr Swati Gupta :- 73873 06968
+        </p>
+    </div>
+
+    <div class="soft-card rounded-2xl p-6 card-hover">
+        <div class="text-teal-600 text-3xl mb-4">📍</div>
+        <h2 class="text-lg font-bold text-slate-800 mb-2">Venue</h2>
+        <p class="text-sm text-slate-600 mb-3">
+            The conference will be hosted at the official venue of MAHATROPACON 2026.
+        </p>
+        <p class="text-sm font-medium text-teal-700">
+            Nagpur
+        </p>
+    </div>
+
+</section>
+
+<!-- Contact Sections -->
+<section class="grid lg:grid-cols-2 gap-8 mb-12 fade-in-up">
+
+    <!-- Left -->
+    <div class="soft-card rounded-3xl p-8">
+        <h2 class="text-2xl font-bold text-blue-700 mb-5">General Enquiries</h2>
+
+        <div class="space-y-4 text-sm text-slate-600 leading-relaxed">
+            <p>
+                For any assistance related to delegate registration, abstract submission, payment support, speaker
+                coordination, or conference participation, please use this section for general communication and
+                event-related enquiries. </p>
+
+            <p>
+                Delegates, faculty members, invited speakers, and abstract authors may contact the conference support
+                team here for help regarding registration guidance, presentation coordination, workshop details, and
+                participation support. </p>
+
+            <p>
+                This section is intended for general academic and administrative enquiries related to MAHATROPACON 2026.
+            </p>
+        </div>
+    </div>
+
+    <!-- Right -->
+    <div class="soft-card rounded-3xl p-8">
+        <h2 class="text-2xl font-bold text-cyan-700 mb-5">Support Information</h2>
+
+        <div class="space-y-4 text-sm text-slate-600">
+            <div class="flex justify-between border-b border-slate-100 pb-3">
+                <span>Registration Queries</span>
+                <span class="font-medium text-slate-800">Available</span>
+            </div>
+
+            <div class="flex justify-between border-b border-slate-100 pb-3">
+                <span>Payment Assistance</span>
+                <span class="font-medium text-slate-800">Available</span>
+            </div>
+
+            <div class="flex justify-between border-b border-slate-100 pb-3">
+                <span>Abstract Submission Help</span>
+                <span class="font-medium text-slate-800">Available</span>
+            </div>
+
+            <div class="flex justify-between">
+                <span>Speaker & Delegate Support</span>
+                <span class="font-medium text-slate-800">Available</span>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
